@@ -1,0 +1,6 @@
+noteApp/node_modules/
+firstApp/node_modules/
+noteApp/build/
+firstApp/build/
+*.log
+
