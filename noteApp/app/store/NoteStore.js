@@ -25,7 +25,7 @@ class NoteStore{
         })
     }
 
-    editTask(note,task){
+    editNote(note,task){
         if(!note < 0 ){
            return;
         }
@@ -34,7 +34,7 @@ class NoteStore{
 
     deleteNote(note){
         const notes = this.notes;
-        const noteIndex = notes.indexof(note);
+        const noteIndex = notes.indexOf(note);
         if(noteIndex < 0){
             return;
         }
