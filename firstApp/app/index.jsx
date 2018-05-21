@@ -18,8 +18,8 @@ class App extends Component{
     render(){
         return(
         <div>
-            <TimeView appState={new AppState()}/>
-            <TotalView appState={new AppState()}/>
+            <TimeView appState={store}/>
+            <TotalView appState={store}/>
         </div>
         )
     }

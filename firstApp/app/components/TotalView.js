@@ -10,23 +10,23 @@ class TotalView extends Component{
             price:0,
             mount:0
         }
-        // this.onChangeMount = this.onChangeMount.bind(this);
-        // this.onChangePrice = this.onChangePrice.bind(this);
-        // this.onSubmmit = this.onSubmmit.bind(this);
+        this.onChangeMount = this.onChangeMount.bind(this);
+        this.onChangePrice = this.onChangePrice.bind(this);
+        this.onSubmmit = this.onSubmmit.bind(this);
     }
-    // onChangePrice(e){
-    //     this.setState({
-    //         mount:e.target.value
-    //     })
-    // }
-    // onChangeMount(e){
-    //     this.setState({
-    //         mount:e.target.value
-    //     })
-    // }
+    onChangePrice(e){
+        const { changePrice } = this.props.appState;
+        changePrice(e.target.value);
+    }
+    onChangeMount(e){
+        const { changeMount } = this.props.appState;
+        changeMount(e.target.value);
+    }
 
     onSubmmit(){
-
+        // console.log("&&&&&&&&&&&&",this.props.appState.total)
+        // this.props.appState.total = 4;
+        // console.log("^^^^^^^^^^^^^^",this.props.appState.price)
     }
 
 
@@ -34,14 +34,16 @@ class TotalView extends Component{
 
     render(){
         const  {appState} = this.props;
-        const {price,mount} = appState;
+        const {price,mount,total} = appState;
 
         return(
             <div>
-                <input type = "text" onChange={appState.onChangePrice} value={price}/>
-                <input type = "text" onChange={appState.onChangeMount} value={mount}/>
-                <button onClick = {this.onSubmmit}/>
+                <input type = "text" onChange={this.onChangePrice} value={price}/>
+                <input type = "text" onChange={this.onChangeMount} value={mount}/>
+                <button onClick = {this.onSubmmit}>total{total}</button>
             </div>
         )
     }   
 }
+
+export default TotalView

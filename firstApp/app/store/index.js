@@ -21,20 +21,21 @@ export default class AppState{
     }
 
     @action.bound
-    onChangePrice(e){
-        this.price = e.taregt.value;
+    changePrice(value){
+        this.price = value?parseInt(value):"";
     }
 
     @action.bound
-    onChangeMount(e){
-        this.mount = e.taregt.value
+    changeMount(value){
+        this.mount = value?parseInt(value):"";
     }
     @computed get total() {
         console.log(this.price,"&&&&",this.mount)
         return  this.price * this.mount;
     }
     set total(total){
-        console.log(total,"*****",this.mount)
-        this.price = total / this.amount;
+        // console.log(total,"*****",this.mount,"%%%%%%%%%%",total/this.mount)
+        this.price = (total/this.mount) ? (total / this.mount):"";
     }
+    
 }
