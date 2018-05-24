@@ -3,7 +3,9 @@ import React,{Component} from "react"
 
 import ReactDom from "react-dom"
 
-import { observer } from "mobx-react"
+import { observer,inject,Provider } from "mobx-react"
+
+import { autorun } from "mobx"
 
 import TimeView from "./components/TimerView"
 
@@ -12,15 +14,18 @@ import TotalView from "./components/TotalView"
 import AppState from "./store/index"
 
 
-const store  = new AppState()
+const store  = new AppState();
+
 
 class App extends Component{
     render(){
         return(
-        <div>
-            <TimeView appState={store}/>
-            <TotalView appState={store}/>
-        </div>
+        <Provider appState = {store}>
+            <div>
+                <TimeView />
+                <TotalView />
+            </div>
+        </Provider>
         )
     }
 }

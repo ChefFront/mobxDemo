@@ -1,7 +1,8 @@
 
 import React,{ Component } from "react"
-import { observer } from "mobx-react"
+import { observer,inject } from "mobx-react"
 
+@inject('appState')
 @observer
 class TotalView extends Component{
     constructor(props){
@@ -24,6 +25,9 @@ class TotalView extends Component{
     }
 
     onSubmmit(){
+        const { disposer } = this.props.appState;
+        disposer();
+
         // console.log("&&&&&&&&&&&&",this.props.appState.total)
         // this.props.appState.total = 4;
         // console.log("^^^^^^^^^^^^^^",this.props.appState.price)

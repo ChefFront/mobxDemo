@@ -1,6 +1,7 @@
 import React,{ Component } from "react"
-import { observer } from "mobx-react"
+import { observer,inject } from "mobx-react"
 
+@inject("appState")
 @observer
 class TimerView extends Component{
     render(){

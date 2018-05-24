@@ -1,5 +1,5 @@
 
-import {observable,action,computed} from "mobx"
+import {observable,action,computed,autorun,when,reaction} from "mobx"
 
 var appstate = observable({
     timer:0
@@ -13,6 +13,22 @@ export default class AppState{
         setInterval(()=>{
             this.timer += 1;
         },1000)
+        this.disposer = autorun(()=>{
+            // console.log("*****",this.timer)
+        });
+        when(
+            // 一旦...
+            () => this.timer === 5,
+            // ... 然后
+            () => this.disposer()
+        );
+        this.reaction1 = reaction(
+            ()=>this.timer + "cs",
+            (str,reaction) => {
+                console.log("#####",str);
+                reaction.dispose();
+            }
+        )
     }
 
     @action.bound
@@ -30,12 +46,12 @@ export default class AppState{
         this.mount = value?parseInt(value):"";
     }
     @computed get total() {
-        console.log(this.price,"&&&&",this.mount)
+        // console.log(this.price,"&&&&",this.mount)
         return  this.price * this.mount;
     }
     set total(total){
         // console.log(total,"*****",this.mount,"%%%%%%%%%%",total/this.mount)
         this.price = (total/this.mount) ? (total / this.mount):"";
     }
-    
+  
 }
